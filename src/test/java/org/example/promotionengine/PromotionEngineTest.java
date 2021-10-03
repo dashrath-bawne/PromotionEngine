@@ -50,7 +50,6 @@ class PromotionEngineTest {
         Cart cart = new Cart();
         cart.addItem('A');
         cart.addItem('A');
-        cart.addItem('A');
         List<Promotion> promotions = new ArrayList<>();
         promotions.add(new IndividualPromotion('A', 3, 130));
         assertThat("Total order value should be 100", calculateTotalOrderValue(cart, promotions), is(100));

@@ -2,6 +2,7 @@ package org.example.promotionengine.impl;
 
 import java.util.Map;
 
+import org.example.promotionengine.cache.ItemCache;
 import org.example.promotionengine.interfaces.Promotion;
 
 /**
@@ -29,7 +30,9 @@ public class IndividualPromotion implements Promotion {
         int numberOfItems = cartItems.get(itemId);
         // Number of times promotional price should be applied
         int matchedCount = numberOfItems / promotionalCount;
+        // Number of items for which original item price should be applied
+        int remainingCount = numberOfItems % promotionalCount;
 
-        return ((matchedCount * promotionalPrice));
+        return ((matchedCount * promotionalPrice) + (remainingCount * ItemCache.getItemCache().get(itemId)));
     }
 }
