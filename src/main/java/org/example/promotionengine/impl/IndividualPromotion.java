@@ -28,6 +28,10 @@ public class IndividualPromotion implements Promotion {
 
         // Number of items in cart which have same itemId as mentioned in this promotion
         int numberOfItems = cartItems.getOrDefault(itemId, 0);
+        // Stop further processing as this promotion isn't applicable for items available in cart
+        if (numberOfItems == 0) {
+            return 0;
+        }
         // Number of times promotional price should be applied
         int matchedCount = numberOfItems / promotionalCount;
         // Number of items for which original item price should be applied

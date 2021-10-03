@@ -179,4 +179,40 @@ class PromotionEngineTest {
         promotions.add(new IndividualPromotion('B', 2, 45));
         assertThat("Total order value should be 275", calculateTotalOrderValue(cart, promotions), is(275));
     }
+
+    /**
+     * Unit price for SKU IDs
+     * A 50
+     * B 30
+     * C 20
+     * D 15
+     * Active Promotions
+     * 3 of A's for 130
+     * 2 of B's for 45
+     * C & D for 30
+     * Scenario A
+     * 3 * A 50
+     * 2 * B 30
+     * 2 * C
+     * 1 * D
+     * Total value = (130 + 45 + 30 + 20) = 225
+     */
+    @Test
+    void testCalculateTotalOrderValue_case7() {
+
+        Cart cart = new Cart();
+        cart.addItem('A');
+        cart.addItem('A');
+        cart.addItem('A');
+        cart.addItem('B');
+        cart.addItem('B');
+        cart.addItem('C');
+        cart.addItem('C');
+        cart.addItem('D');
+        List<Promotion> promotions = new ArrayList<>();
+        promotions.add(new IndividualPromotion('A', 3, 130));
+        promotions.add(new IndividualPromotion('B', 2, 45));
+        promotions.add(new CombinedPromotion('C', 'D', 30));
+        assertThat("Total order value should be 225", calculateTotalOrderValue(cart, promotions), is(225));
+    }
 }
