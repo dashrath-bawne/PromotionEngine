@@ -26,6 +26,9 @@ class PromotionEngineTest {
     void testCalculateTotalOrderValue_case1() {
 
         Cart cart = new Cart();
+        cart.addItem('A');
+        cart.addItem('A');
+        cart.addItem('A');
         List<Promotion> promotions = new ArrayList<>();
         assertThat("Total order value should be 130", calculateTotalOrderValue(cart, promotions), is(130));
     }
