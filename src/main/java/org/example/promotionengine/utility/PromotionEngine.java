@@ -1,6 +1,8 @@
 package org.example.promotionengine.utility;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.example.promotionengine.interfaces.Promotion;
 import org.example.promotionengine.vo.Cart;
@@ -21,8 +23,25 @@ public class PromotionEngine {
 
         List<Character> items = cart.getItems();
         if (items != null && !items.isEmpty()) {
+            Map<Character, Integer> itemsWithUnits = mapCartItemWithNumberOfUnits(cart);
             
         }
         return 0;
+    }
+
+    /**
+     * Generates a map which holds itemId and number of units of that item in given cart
+     *
+     * @param cart - items in cart
+     * @return Map - mapping of itemId and its number of units
+     */
+    private static Map<Character, Integer> mapCartItemWithNumberOfUnits(Cart cart) {
+
+        Map<Character, Integer> itemsWithNumberOfUnits = new HashMap<>();
+        for (Character itemId : cart.getItems()) {
+            Integer count = itemsWithNumberOfUnits.getOrDefault(itemId, new Integer(0));
+            itemsWithNumberOfUnits.put(itemId, count.intValue() + 1);
+        }
+        return itemsWithNumberOfUnits;
     }
 }
