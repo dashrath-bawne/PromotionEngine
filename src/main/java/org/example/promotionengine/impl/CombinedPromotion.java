@@ -2,6 +2,7 @@ package org.example.promotionengine.impl;
 
 import java.util.Map;
 
+import org.example.promotionengine.cache.ItemCache;
 import org.example.promotionengine.interfaces.Promotion;
 
 /**
@@ -22,6 +23,8 @@ public class CombinedPromotion implements Promotion {
 
     @Override public int apply(Map<Character, Integer> cartItems) {
 
-        return 0;
+        // Number of items in cart which have same firstItemId as mentioned in this promotion
+        int firstItemUnits = cartItems.get(firstItemId);
+        return (firstItemUnits * ItemCache.getItemCache().get(firstItemId));
     }
 }
