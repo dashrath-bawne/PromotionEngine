@@ -21,12 +21,15 @@ public class PromotionEngine {
      */
     public static int calculateTotalOrderValue(Cart cart, List<Promotion> promotions) {
 
+        int total = 0;
         List<Character> items = cart.getItems();
         if (items != null && !items.isEmpty()) {
             Map<Character, Integer> itemsWithUnits = mapCartItemWithNumberOfUnits(cart);
-            
+            for (Promotion promotion : promotions) {
+                total += promotion.apply(itemsWithUnits);
+            }
         }
-        return 0;
+        return total;
     }
 
     /**
