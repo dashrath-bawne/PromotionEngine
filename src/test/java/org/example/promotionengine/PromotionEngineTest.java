@@ -7,6 +7,7 @@ import static org.hamcrest.Matchers.is;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.example.promotionengine.impl.CombinedPromotion;
 import org.example.promotionengine.impl.IndividualPromotion;
 import org.example.promotionengine.interfaces.Promotion;
 import org.example.promotionengine.vo.Cart;
@@ -108,6 +109,7 @@ class PromotionEngineTest {
         List<Promotion> promotions = new ArrayList<>();
         promotions.add(new IndividualPromotion('A', 3, 130));
         promotions.add(new IndividualPromotion('B', 2, 45));
+        promotions.add(new CombinedPromotion('C', 'D', 30));
         assertThat("Total order value should be 100", calculateTotalOrderValue(cart, promotions), is(100));
     }
 }
