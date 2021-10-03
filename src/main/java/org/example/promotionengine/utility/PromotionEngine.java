@@ -19,6 +19,10 @@ public class PromotionEngine {
      */
     public static int calculateTotalOrderValue(Cart cart, List<Promotion> promotions) {
 
+        List<Character> items = cart.getItems();
+        if (items != null && !items.isEmpty()) {
+            
+        }
         return 0;
     }
 }
