@@ -27,7 +27,9 @@ public class CombinedPromotion implements Promotion {
         int firstItemUnits = cartItems.getOrDefault(firstItemId, 0);
         // Number of items in cart which have same secondItemId as mentioned in this promotion
         int secondItemUnits = cartItems.getOrDefault(secondItemId, 0);
-
+        // Removing items so that subsequent promotions won't be applied on same item
+        cartItems.remove(firstItemId);
+        cartItems.remove(secondItemId);
         // both items have same numbers of unit
         if (firstItemUnits == secondItemUnits) {
             return (firstItemUnits * promotionalPrice);

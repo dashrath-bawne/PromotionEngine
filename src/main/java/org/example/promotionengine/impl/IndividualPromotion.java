@@ -27,12 +27,13 @@ public class IndividualPromotion implements Promotion {
     @Override public int apply(Map<Character, Integer> cartItems) {
 
         // Number of items in cart which have same itemId as mentioned in this promotion
-        int numberOfItems = cartItems.get(itemId);
+        int numberOfItems = cartItems.getOrDefault(itemId, 0);
         // Number of times promotional price should be applied
         int matchedCount = numberOfItems / promotionalCount;
         // Number of items for which original item price should be applied
         int remainingCount = numberOfItems % promotionalCount;
-
+        // Removing items from cart so that next promotion shouldn't be applied on same items.
+        cartItems.remove(itemId);
         return ((matchedCount * promotionalPrice) + (remainingCount * ItemCache.getItemCache().get(itemId)));
     }
 }

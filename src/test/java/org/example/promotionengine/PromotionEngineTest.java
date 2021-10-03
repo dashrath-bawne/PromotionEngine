@@ -159,7 +159,8 @@ class PromotionEngineTest {
      * Scenario A
      * 5 * A 50
      * 2 * B 30
-     * Total value = 275
+     * Total value = (130 + (2*50) + 45 = 275
+     *  2 of A's for 70 promotion won't be applied here
      */
     @Test
     void testCalculateTotalOrderValue_case6() {
